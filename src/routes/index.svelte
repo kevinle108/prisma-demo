@@ -11,7 +11,7 @@
 </script>
 
 <section>
-  <h1 class="grey">Voter Registry</h1>
+  <h1 class="title">Voter Registry</h1>
   <button on:click={updateHandler}>Load from Database</button>
   <ul>
     {#each voters as voter}
@@ -40,6 +40,11 @@
 
 
 <style>
+  button {
+    padding: 5px;
+    width: 285px;
+  }
+
   body{
     text-align: center;
   }
@@ -59,7 +64,8 @@
   }
 
   .field {
-    min-width: 100px;
+    display: inline-block;
+    width: 80px;
   }
 
   .grey {
@@ -68,5 +74,10 @@
 
   .dbContent {
     color: white;
+  }
+
+  .title {
+    font-weight: bold;
+    color:steelblue;
   }
 </style>

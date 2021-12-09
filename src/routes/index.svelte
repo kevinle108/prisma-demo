@@ -11,16 +11,26 @@
 </script>
 
 <section>
-  <h1 class="title">Voter Registry</h1>
+  <h1 class="grey">Voter Registry</h1>
   <button on:click={updateHandler}>Load from Database</button>
   <ul>
     {#each voters as voter}
       <li>
-        <div>Voter ID: {voter.id}</div>
-        <div>Name: {voter.first_name} {voter.last_name}</div>
-        <div>DOB: {(new Date(voter.dob)).toDateString()}</div>
-        <div>Status: {voter.reg_status}</div>
-        <div>Is Active?: {voter.is_active}</div>
+        <div>
+          <span class="grey field">Voter ID: </span><span class="dbContent">{voter.id}</span>
+        </div>
+        <div>
+          <span class="grey field">Name: </span><span class="dbContent">{voter.first_name} {voter.last_name}</span>
+        </div>
+        <div>
+          <span class="grey field">DOB: </span><span class="dbContent">{((new Date(voter.dob)).toDateString()).slice(4)}</span>
+        </div>
+        <div>
+          <span class="grey field">Status: </span><span class="dbContent">{voter.reg_status}</span>
+        </div>
+        <div>
+          <span class="grey field">Is Active?: </span><span class="dbContent">{voter.is_active}</span>
+        </div>                    
       </li>
     {/each}
   </ul>
@@ -48,7 +58,15 @@
     margin: 10px 0;
   }
 
-  .title {
+  .field {
+    min-width: 100px;
+  }
+
+  .grey {
     color:dimgray;
+  }
+
+  .dbContent {
+    color: white;
   }
 </style>

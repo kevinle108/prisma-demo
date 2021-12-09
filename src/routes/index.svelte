@@ -1,6 +1,19 @@
+<script context="module">
+  export const load = async ({fetch}) => {
+    console.log('module fired')
+    const res = await fetch('./index.json');
+    const data = await res.json();
+    console.log(data);
+    return {
+      props: {data}
+    }
+  }
+</script>
+
 <script>
-  import { onMount } from "svelte";
+  export let data;
   let voters = ['john', 'bob', 'tom'];
+  voters = data.map(x => x.first_name);
 
   // onMount(async () => {
   //   const data = await fetch('./index.json');

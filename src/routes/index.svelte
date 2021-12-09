@@ -1,27 +1,6 @@
-<script context="module">
-  export const load = async ({fetch}) => {
-    console.log('module fired')
-    const res = await fetch('./index.json');
-    const data = await res.json();
-    console.log(data);
-    return {
-      props: {data}
-    }
-  }
-</script>
-
 <script>
-  export let data;
-  let voters = ['john', 'bob', 'tom'];
-  voters = data.map(x => x.first_name);
-
-  // onMount(async () => {
-  //   const data = await fetch('./index.json');
-  //   const res = await data.json();
-  //   console.log(res);
-  //   voters = [...res];
-  // });
-
+  let voters = [];
+  
   const updateHandler = async () => {
     const data = await fetch('./index.json');
     const res = await data.json();
@@ -34,12 +13,20 @@
 <h1>Voter Registry</h1>
 <ul>
   {#each voters as voter}
-    <li>{voter}</li>
+    <li>
+      <div>Voter ID: {voter.id}</div>
+      <div>Name: {voter.first_name} {voter.last_name}</div>
+      <div>DOB: {(new Date(voter.dob)).toDateString()}</div>
+      <div>Status: {voter.reg_status}</div>
+      <div>Is Active?: {voter.is_active}</div>
+    </li>
   {/each}
 </ul>
-<button on:click={updateHandler}>Update</button>
+<button on:click={updateHandler}>Load from Database</button>
 
 
 <style>
-
+  li {
+    margin: 20px 0;
+  }
 </style>

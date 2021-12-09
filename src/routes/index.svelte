@@ -13,33 +13,48 @@
 <section>
   <h1 class="title">Voter Registry</h1>
   <button on:click={updateHandler}>Load from Database</button>
-  <ul>
+  <table>
+    <tr>
+      <th>Voter ID</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>DOB</th>
+      <th>Voter Status</th>
+      <th>Is Active?</th>
+    </tr>
     {#each voters as voter}
-      <li>
-        <div>
-          <span class="grey field">Voter ID: </span><span class="dbContent">{voter.id}</span>
-        </div>
-        <div>
-          <span class="grey field">Name: </span><span class="dbContent">{voter.first_name} {voter.last_name}</span>
-        </div>
-        <div>
-          <span class="grey field">DOB: </span><span class="dbContent">{((new Date(voter.dob)).toDateString()).slice(4)}</span>
-        </div>
-        <div>
-          <span class="grey field">Status: </span><span class="dbContent">{voter.reg_status}</span>
-        </div>
-        <div>
-          <span class="grey field">Is Active?: </span><span class="dbContent">{voter.is_active}</span>
-        </div>                    
-      </li>
-    {/each}
-  </ul>
+      <tr>
+        <td>{voter.id}</td>
+        <td>{voter.last_name}</td>
+        <td>{voter.first_name}</td>
+        <td>{((new Date(voter.dob)).toDateString()).slice(4)}</td>
+        <td>{voter.reg_status}</td>
+        <td>{voter.is_active}</td>
+      </tr>
+    {/each}    
+  </table>
+
 </section>
 
 
 
 
 <style>
+  table {
+    width: 1000px;
+    padding: 15px;
+  }
+  th {
+    background-color: slategrey;
+    color: black
+  }
+  td {
+    margin: 10px 10px;
+  }
+  table, th, td {
+  border: 1px solid white;
+  }
+
   button {
     padding: 5px;
     width: 285px;
